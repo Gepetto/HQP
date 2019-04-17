@@ -3,14 +3,7 @@ from scipy.optimize import fmin_slsqp
 from scipy.optimize import approx_fprime
 from scipy.optimize.slsqp import approx_jacobian
 from scipy.optimize import line_search
-from qpoases import PySQProblem as SQProblem
-from qpoases import PyOptions as Options
-from qpoases import PyPrintLevel as PrintLevel
-from qpoases import PyReturnValue
-from qpoases import PySolutionAnalysis as SolutionAnalysis
-from qpoases import PyHessianType as HessianType # 'IDENTITY', 'INDEF', 'POSDEF', 'POSDEF_NULLSPACE', 'SEMIDEF', 'UNKNOWN', 'ZERO'
-from qpoases import PySubjectToStatus as SubjectToStatus
-from qpoases import PyBooleanType as BooleanType
+
 import time
 
 class AbstractSolver (object):

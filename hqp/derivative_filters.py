@@ -42,6 +42,7 @@ def computeSecondOrderPolynomialFitting(x, dt, window_length):
     assert len(x.shape)==2, "x must be a matrix"
     assert window_length>2, "window length must be at least 3"
     assert window_length%2==1, "window length must be an odd number"
+    print(x, dt, window_length)
     N   = x.shape[0];
     T   = x.shape[1];
     w   = window_length;

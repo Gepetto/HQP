@@ -3,6 +3,7 @@ import numpy as np
 import time
 import os
 from models import osim_parser
+from ospi import model_parser 
 from pinocchio.utils import XYZQUATToViewerConfiguration, zero, se3ToXYZQUAT
 from bmtools.algebra import quaternion_from_matrix, euler_matrix
 from bmtools.filters import *
@@ -12,7 +13,7 @@ class Wrapper():
         self.name = name
         if model_path is None:
             model_path = '/local/gmaldona/devel/biomechatronics/models/GX.osim'
-        r = osim_parser.Osim2PinocchioModel()
+        r = model_parser.parseModel()
         self.mesh_path = mesh_path
         self.model_path = model_path
         r.parseModel(self.model_path,self.mesh_path)
@@ -350,7 +351,14 @@ class Wrapper():
         costly wrt a dedicated call. Use only with update_geometry for prototyping.
     '''
     def frameJacobian(self, q, index, update_geometry=True, local_frame=True):
-        return se3.frameJacobian(self.model, self.data, q, index, local_frame, update_geometry)
+	if local_frame:
+		return se3.frameJacobian(self.model, self.data, index, q)
+	else:
+		pass 
+		# idx = get parent joint index
+		# jointJacobian(q, idx)
+	
+       #return se3.frameJacobian(self.model, self.data, q, index, local_frame, update_geometry)
 
 
     def dof2pinocchio(self, dof):
