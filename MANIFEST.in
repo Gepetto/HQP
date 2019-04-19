@@ -1,0 +1,4 @@
+include LICENSE
+include README.md
+recursive-include hqp *
+recursive-include hqp/multi_contact *
